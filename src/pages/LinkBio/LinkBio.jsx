@@ -1,73 +1,117 @@
 import styles from './LinkBio.module.css';
 
 const LinkBio = () => {
+
   const links = [
     {
       id: 1,
       title: "GRUPO DE ATACADO",
-      url: "https://chat.whatsapp.com/DH0s9MnN2kD9Fol8GrFRox?mode=gi_t",
+      url: "https://chat.whatsapp.com/GnYY2piP5dP9nLWOf7Gn56?s=cl&p=a&ilr=4",
       image:"/logoGrupo.png"
     },
     {
       id: 2,
       title: "FALAR COM VENDEDOR",
-      url: "https://wa.me/5581996457525",
-      image: "/logoZap.png"
+      url: "https://wa.me/5581996530929",
+      image:"/logoZap.png"
     },
     {
       id: 3,
       title: "INSTAGRAM",
-      url: "https://www.instagram.com/centralcapitalfitness?igsh=dXV1eDljdm5veWV4",
-      image: "/logoInsta.png" 
+      url:"https://www.instagram.com/leleli.kids?igsh=MTd5c25yb2duN2FpaA==",
+      image:"/logoInsta.png"
     }
   ];
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        
+
+      <main className={styles.container}>
+
         <div className={styles.header}></div>
 
         <div className={styles.profileContainer}>
           <img 
-            src="#" 
-            alt="" 
-            className={styles.profilePic} 
+            src="/logo.jpg"
+            className={styles.profilePic}
+            alt="Leleli Kids"
           />
         </div>
 
-        {/* Título e Subtítulo */}
-        <div className={styles.info}>
-          <h1 className={styles.name}>Leleli Kids</h1>
-          <p className={styles.subtitle}>Seu próximo nível começa no que você veste.</p>
-        </div>
+        <section className={styles.info}>
+
+          <h1>
+            Leleli Kids
+          </h1>
+
+          <p>
+            Moda infantil feita para deixar
+            cada momento ainda mais especial ✨
+          </p>
+
+        </section>
 
         <div className={styles.socials}>
-          {links.map((link) => (
-            <a key={`icon-${link.id}`} href={link.url} target="_blank" rel="noopener noreferrer">
-              <img 
-                src={link.image} 
-                alt={`Ícone ${link.title}`} 
-                className={styles.icon} 
-                style={{ objectFit: 'contain' }}
+
+          {links.map(link => (
+
+            <a 
+              key={link.id}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+
+              <img
+                src={link.image}
+                className={styles.icon}
+                alt=""
+                style={{ filter: "brightness(0) invert(100%)" }}
               />
+
             </a>
+
           ))}
+
         </div>
 
-        {/* Lista de Links */}
         <div className={styles.linksContainer}>
-          {links.map((link) => (
-            <a key={link.id} href={link.url} className={styles.linkCard} target="_blank" rel="noopener noreferrer">
-              <img src={link.image} alt={`Imagem do link ${link.title}`} className={styles.linkImage} />
-              <span className={styles.linkText}>{link.title}</span>
+
+          {links.map(link => (
+
+            <a
+              key={link.id}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.linkCard}
+            >
+
+              <img
+                src={link.image}
+                className={styles.linkImage}
+                alt=""
+                style={{ filter: "brightness(0) invert(100%)" }}
+              />
+
+              <span className={styles.title}>
+                {link.title}
+              </span>
+
             </a>
+
           ))}
+
         </div>
 
-      </div>
+        <footer>
+          Leleli Kids 💗
+        </footer>
+
+      </main>
+
     </div>
-  );
+  )
 }
 
 export default LinkBio;

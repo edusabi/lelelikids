@@ -1,13 +1,12 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 //pages
-import LinkBio from "./pages/linkBio/linkBio";
+import LinkBio from "./pages/LinkBio/LinkBio";
 
 function App() {
 
   return (
     <>
-    {/* <h1 style={{textAlign:"center"}}>SITE LELELI KIDS</h1> */}
     <BrowserRouter>
     
       <Routes>

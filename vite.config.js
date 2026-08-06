@@ -4,19 +4,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: "0.0.0.0",
-    port: 5173,
-    strictPort: false,
+    host: true,
+    port: 8080,
     open: true,
     watch: {
       usePolling: true,
-      interval: 1000,
-      binaryInterval: 1000,
-      ignored: ["**/node_modules/**", "**/.git/**"],
-    },
-    hmr: {
-      host: "localhost",
-      protocol: "ws",
+      interval: 100,
     },
   },
 });
