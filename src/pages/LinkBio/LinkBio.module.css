@@ -1,14 +1,13 @@
 .wrapper {
-
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
 
-  background:
-    linear-gradient(180deg,
-      #FFF5FA,
-      #FFD6EC);
+  background-image: url('/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   padding: 40px 15px;
 
@@ -16,7 +15,6 @@
     'Arial Rounded MT Bold',
     Arial,
     sans-serif;
-
 }
 
 .title{
@@ -118,7 +116,7 @@
   padding: 10px;
 
   border:
-    5px solid #F5009D;
+    5px solid #F313EF;
 
 }
 
@@ -145,7 +143,7 @@
 
   font-size: 36px;
 
-  color: #F5009D;
+  color: #F313EF;
 
   font-weight: 800;
 
@@ -241,8 +239,8 @@
 
   background:
     linear-gradient(135deg,
-      #F5009D,
-      #FF62C5);
+      #f836f4,
+      #F313EF);
 
 
   border-radius: 18px;
@@ -305,7 +303,7 @@ footer {
 
   font-size: 13px;
 
-  color: #F5009D;
+  color: #F313EF;
 
   font-weight: bold;
 
