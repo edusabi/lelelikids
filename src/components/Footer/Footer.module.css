@@ -1,0 +1,78 @@
+/* Footer.module.css */
+
+.footer {
+  background-color: #1a1a1a; /* Fundo escuro elegante */
+  color: #ffffff;
+  padding: 3rem 5% 1rem 5%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: auto; /* Ajuda a empurrar o footer para o final da página */
+}
+
+/* Container principal dividido em colunas na tela grande */
+.footerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #333333; /* Linha sutil para separar o copy */
+}
+
+/* Informações da marca */
+.brandInfo h2 {
+  color: #F412F0; /* Rosa da Leleli Kids */
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.brandInfo p {
+  color: #aaaaaa;
+  margin: 0;
+  font-size: 0.95rem;
+  max-width: 300px;
+}
+
+/* Links Sociais */
+.socialLink {
+  color: #F412F0;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.socialLink:hover {
+  color: #c805c4;
+  text-decoration: underline;
+}
+
+/* Seção de Copy / Direitos Autorais */
+.copyRight {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.copyRight p {
+  color: #777777; /* Texto mais discreto */
+  font-size: 0.85rem;
+  margin: 0.3rem 0;
+}
+
+.developer {
+  font-size: 0.75rem !important;
+  color: #555555 !important;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+  .footerContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .brandInfo p {
+    max-width: 100%;
+  }
+}

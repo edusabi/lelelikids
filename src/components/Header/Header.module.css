@@ -1,0 +1,130 @@
+/* Header.module.css */
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Barra Superior --- */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #F412F0;
+}
+
+.brandName {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #F412F0;
+  letter-spacing: -0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #000000;
+}
+
+.navContact {
+  background-color: #F412F0;
+  color: #ffffff !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(230, 0, 126, 0.2);
+}
+
+.navContact:hover {
+  background-color: #c805c4;
+  transform: translateY(-2px);
+}
+
+/* --- Ticker / Letreiro Animado --- */
+.tickerContainer {
+  background-color: #ffe6f3; /* Fundo rosa bem clarinho */
+  border-top: 1px solid #ffcce6;
+  border-bottom: 1px solid #ffcce6;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem 0;
+  display: flex;
+  white-space: nowrap;
+}
+
+.tickerTrack {
+    display: inline-flex;
+    gap: 3rem;
+    /* A animação rola o conteúdo para a esquerda infinitamente */
+    animation: scroll 30s linear infinite; 
+}
+
+/* Pausa a animação quando o usuário passa o mouse por cima */
+.tickerTrack:hover {
+    animation-play-state: paused;
+}
+
+.tickerItem {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #F412F0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tickerTrack a{
+    text-decoration: none;
+}
+
+/* Animação do Letreiro */
+@keyframes scroll {
+    0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Esconde os links no mobile para não poluir (poderia ser um menu hambúrguer) */
+  }
+  
+  .topBar {
+    justify-content: center; /* Centraliza a logo no mobile */
+  }
+}
