@@ -5,7 +5,6 @@ import styles from "./CalcaAlfaiataria.module.css";
 
 const CalcaAlfaiataria = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
-  
   const [imagemExpandida, setImagemExpandida] = useState(null);
 
   useEffect(() => {
@@ -19,13 +18,8 @@ const CalcaAlfaiataria = () => {
   const [cart, setCart] = useState(() => {
     try {
       const carrinhoSalvo = localStorage.getItem("vyra_cart");
-
-      if (!carrinhoSalvo) {
-        return [];
-      }
-
+      if (!carrinhoSalvo) return [];
       const carrinhoParseado = JSON.parse(carrinhoSalvo);
-
       return Array.isArray(carrinhoParseado) ? carrinhoParseado : [];
     } catch (error) {
       console.error("Erro ao carregar carrinho:", error);
@@ -35,6 +29,7 @@ const CalcaAlfaiataria = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tamanhosSelecionados, setTamanhosSelecionados] = useState({});
+  const [coresSelecionadas, setCoresSelecionadas] = useState({}); // NOVO ESTADO PARA CORES
 
   const [toast, setToast] = useState({
     show: false,
@@ -52,29 +47,18 @@ const CalcaAlfaiataria = () => {
   };
 
   const mostrarToast = (message, type = "error") => {
-    setToast({
-      show: true,
-      message,
-      type,
-    });
-
+    setToast({ show: true, message, type });
     setTimeout(() => {
-      setToast({
-        show: false,
-        message: "",
-        type: "",
-      });
+      setToast({ show: false, message: "", type: "" });
     }, 3000);
   };
 
-  // ATUALIZADO: Impede o scroll da página também quando a imagem estiver expandida
   useEffect(() => {
     if (isCartOpen || isLoadingPage || imagemExpandida) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -84,60 +68,76 @@ const CalcaAlfaiataria = () => {
     localStorage.setItem("vyra_cart", JSON.stringify(cart));
   }, [cart]);
 
+  // Lista de cores disponíveis
+  const opcoesCores = [
+    { nome: "Chiclete", hex: "#F88EAC" },
+    { nome: "Verde Bandeira", hex: "#307740" },
+    { nome: "Verde Musgo", hex: "#64875D" },
+    { nome: "Azul Royal", hex: "#004691" },
+    { nome: "Amarelo", hex: "#FFD700" },
+  ];
+
+  // Produtos genéricos (cor é escolhida pelo cliente)
   const produtos = [
     {
-      id: "calca-alfaiataria-amarelo",
-      nomeSite: "Calça Alfaiataria Amarelo",
-      nomeWpp: "Calça Alfaiataria Amarelo",
+      id: "calca-alfaiataria-1",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0006.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
+      cores: opcoesCores,
     },
     {
-      id: "calca-alfaiataria-verde-musgo",
-      nomeSite: "Calça Alfaiataria Verde Musgo",
-      nomeWpp: "Calça Alfaiataria Verde Musgo",
+      id: "calca-alfaiataria-2",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0007.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
+      cores: opcoesCores,
     },
     {
-      id: "calca-alfaiataria-chiclete",
-      nomeSite: "Calça Alfaiataria Chiclete",
-      nomeWpp: "Calça Alfaiataria Chiclete",
+      id: "calca-alfaiataria-3",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0008.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
+      cores: opcoesCores,
     },
     {
-      id: "calca-alfaiataria-chiclete-tamanho02", // Alterei o ID para não repetir o anterior
-      nomeSite: "Calça Alfaiataria Chiclete Tamanho 02",
-      nomeWpp: "Calça Alfaiataria Chiclete",
+      id: "calca-alfaiataria-4",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0048.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
+      cores: opcoesCores,
     },
     {
-      id: "calca-alfaiataria-amarelo-tamanho02",
-      nomeSite: "Calça Alfaiataria Amarelo Tamanho 02",
-      nomeWpp: "Calça Alfaiataria Amarelo",
+      id: "calca-alfaiataria-5",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0049.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
+      cores: opcoesCores,
     },
     {
-      id: "calca-alfaiataria-Azul-Royal-tamanho02",
-      nomeSite: "Calça Alfaiataria Azul Royal Tamanho 02",
-      nomeWpp: "Calça Alfaiataria Azul Royal",
+      id: "calca-alfaiataria-6",
+      nomeSite: "Calça Alfaiataria",
+      nomeWpp: "Calça Alfaiataria",
       img: "/calcaAlfaiataria/IMG-20260811-WA0050.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
+      cores: opcoesCores,
     },
   ];
 
@@ -148,26 +148,26 @@ const CalcaAlfaiataria = () => {
         delete novoEstado[produtoId];
         return novoEstado;
       }
-      return {
-        ...prev,
-        [produtoId]: tamanho,
-      };
+      return { ...prev, [produtoId]: tamanho };
+    });
+  };
+
+  const selecionarCor = (produtoId, corNome) => {
+    setCoresSelecionadas((prev) => {
+      if (prev[produtoId] === corNome) {
+        const novoEstado = { ...prev };
+        delete novoEstado[produtoId];
+        return novoEstado;
+      }
+      return { ...prev, [produtoId]: corNome };
     });
   };
 
   const obterPreco = (item) => {
-    const possiveisPrecos = [
-      item?.preco,
-      item?.precoAtacado,
-      item?.precoVenda,
-      item?.valor,
-    ];
-
+    const possiveisPrecos = [item?.preco, item?.precoAtacado, item?.precoVenda, item?.valor];
     const precoEncontrado = possiveisPrecos.find(
-      (preco) =>
-        preco !== undefined && preco !== null && !Number.isNaN(Number(preco)),
+      (preco) => preco !== undefined && preco !== null && !Number.isNaN(Number(preco))
     );
-
     return precoEncontrado !== undefined ? Number(precoEncontrado) : 0;
   };
 
@@ -179,13 +179,20 @@ const CalcaAlfaiataria = () => {
 
   const adicionarAoCarrinho = (produto) => {
     const tamanhoEscolhido = tamanhosSelecionados[produto.id];
+    const corEscolhida = coresSelecionadas[produto.id];
 
     if (!tamanhoEscolhido) {
       mostrarToast("Por favor, selecione um tamanho antes de adicionar!", "error");
       return;
     }
 
-    const cartItemId = `${produto.id}-${tamanhoEscolhido}`;
+    if (!corEscolhida) {
+      mostrarToast("Por favor, selecione uma cor antes de adicionar!", "error");
+      return;
+    }
+
+    // ID do carrinho agora inclui a cor
+    const cartItemId = `${produto.id}-${tamanhoEscolhido}-${corEscolhida}`;
 
     setCart((prevCart) => {
       const itemExiste = prevCart.find((item) => item.cartItemId === cartItemId);
@@ -204,6 +211,7 @@ const CalcaAlfaiataria = () => {
           ...produto,
           cartItemId,
           tamanho: tamanhoEscolhido,
+          cor: corEscolhida,
           qtd: 1,
         },
       ];
@@ -218,10 +226,7 @@ const CalcaAlfaiataria = () => {
         if (item.cartItemId === cartItemId) {
           const quantidadeAtual = Number(item.qtd) || 1;
           const novaQtd = quantidadeAtual + delta;
-          return {
-            ...item,
-            qtd: novaQtd > 0 ? novaQtd : 1,
-          };
+          return { ...item, qtd: novaQtd > 0 ? novaQtd : 1 };
         }
         return item;
       })
@@ -229,9 +234,7 @@ const CalcaAlfaiataria = () => {
   };
 
   const removerItem = (cartItemId) => {
-    setCart((prevCart) =>
-      prevCart.filter((item) => item.cartItemId !== cartItemId)
-    );
+    setCart((prevCart) => prevCart.filter((item) => item.cartItemId !== cartItemId));
   };
 
   const totalItens = cart.reduce((acc, item) => acc + (Number(item.qtd) || 0), 0);
@@ -263,6 +266,7 @@ const CalcaAlfaiataria = () => {
 
       mensagem += `\n${index + 1}. *${item.nomeWpp || item.nomeSite || "Produto"}*`;
       mensagem += `\n▫️ Tamanho: *${item.tamanho || "Não informado"}*`;
+      mensagem += `\n▫️ Cor: *${item.cor || "Não informada"}*`;
       mensagem += `\n▫️ Quantidade: ${quantidade}`;
       mensagem += `\n▫️ Valor Unid: R$ ${formatarPreco(preco)}`;
       mensagem += `\n▫️ Subtotal: R$ ${formatarPreco(subtotal)}\n`;
@@ -287,19 +291,10 @@ const CalcaAlfaiataria = () => {
         </div>
       )}
 
-      {/* NOVO: Modal de Imagem Expandida */}
       {imagemExpandida && (
-        <div 
-          className={styles.imageModalOverlay} 
-          onClick={() => setImagemExpandida(null)}
-        >
+        <div className={styles.imageModalOverlay} onClick={() => setImagemExpandida(null)}>
           <div className={styles.imageModalContent} onClick={(e) => e.stopPropagation()}>
-            <button 
-              className={styles.closeImageModalBtn} 
-              onClick={() => setImagemExpandida(null)}
-            >
-              ✕
-            </button>
+            <button className={styles.closeImageModalBtn} onClick={() => setImagemExpandida(null)}>✕</button>
             <img src={imagemExpandida} alt="Produto Ampliado" className={styles.expandedImg} />
           </div>
         </div>
@@ -309,39 +304,18 @@ const CalcaAlfaiataria = () => {
         <Header />
 
         {toast.show && (
-          <div
-            className={`
-              ${styles.toast}
-              ${toast.type === "error" ? styles.toastError : styles.toastSuccess}
-            `}
-          >
+          <div className={`${styles.toast} ${toast.type === "error" ? styles.toastError : styles.toastSuccess}`}>
             {toast.message}
           </div>
         )}
 
-        <button
-          className={styles.floatingCartBtn}
-          onClick={() => setIsCartOpen(true)}
-          aria-label="Abrir carrinho"
-        >
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
+        <button className={styles.floatingCartBtn} onClick={() => setIsCartOpen(true)} aria-label="Abrir carrinho">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
             <line x1="3" y1="6" x2="21" y2="6" />
             <path d="M16 10a4 4 0 0 1-8 0" />
           </svg>
-
-          {totalItens > 0 && (
-            <span className={styles.cartBadge}>{totalItens}</span>
-          )}
+          {totalItens > 0 && <span className={styles.cartBadge}>{totalItens}</span>}
         </button>
 
         {isCartOpen && (
@@ -349,13 +323,7 @@ const CalcaAlfaiataria = () => {
             <div className={styles.cartSidebar} onClick={(e) => e.stopPropagation()}>
               <div className={styles.cartHeader}>
                 <h2>CARRINHO</h2>
-                <button
-                  className={styles.closeCartBtn}
-                  onClick={() => setIsCartOpen(false)}
-                  aria-label="Fechar carrinho"
-                >
-                  ✕
-                </button>
+                <button className={styles.closeCartBtn} onClick={() => setIsCartOpen(false)} aria-label="Fechar carrinho">✕</button>
               </div>
 
               <div className={styles.cartItemsContainer}>
@@ -369,31 +337,20 @@ const CalcaAlfaiataria = () => {
                     return (
                       <div key={item.cartItemId} className={styles.cartItem}>
                         <div className={styles.cartItemImgBox}>
-                          <img
-                            src={item.img}
-                            alt={item.nomeSite || "Produto"}
-                            className={styles.cartItemImg}
-                          />
+                          <img src={item.img} alt={item.nomeSite || "Produto"} className={styles.cartItemImg} />
                         </div>
                         <div className={styles.cartItemInfo}>
                           <h4 title={item.nomeSite}>{item.nomeSite || "Produto"}</h4>
                           <span className={styles.cartItemSize}>
-                            Tamanho: {item.tamanho || "N/A"}
+                            Tamanho: {item.tamanho || "N/A"} | Cor: {item.cor || "N/A"}
                           </span>
-                          <p className={styles.cartItemPrice}>
-                            R$ {formatarPreco(preco)}
-                          </p>
+                          <p className={styles.cartItemPrice}>R$ {formatarPreco(preco)}</p>
 
                           <div className={styles.qtyControls}>
                             <button onClick={() => alterarQuantidade(item.cartItemId, -1)}>-</button>
                             <span>{quantidade}</span>
                             <button onClick={() => alterarQuantidade(item.cartItemId, 1)}>+</button>
-                            <button
-                              className={styles.removeBtn}
-                              onClick={() => removerItem(item.cartItemId)}
-                            >
-                              REMOVER
-                            </button>
+                            <button className={styles.removeBtn} onClick={() => removerItem(item.cartItemId)}>REMOVER</button>
                           </div>
                         </div>
                       </div>
@@ -418,10 +375,7 @@ const CalcaAlfaiataria = () => {
                   </div>
 
                   <button
-                    className={`
-                      ${styles.checkoutBtn}
-                      ${!podeFinalizar ? styles.checkoutBtnDisabled : ""}
-                    `}
+                    className={`${styles.checkoutBtn} ${!podeFinalizar ? styles.checkoutBtnDisabled : ""}`}
                     onClick={finalizarCompraWhatsapp}
                   >
                     FINALIZAR COMPRA
@@ -434,13 +388,14 @@ const CalcaAlfaiataria = () => {
 
         <main className={styles.products}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>CONJUNTO CALÇA DE ALFAIATARIA</h2>
+            <h2 className={styles.sectionTitle}>CALÇAS DE ALFAIATARIA</h2>
             <div className={styles.neonLine} />
           </div>
 
           <div className={styles.productGrid}>
             {produtos.map((produto, index) => {
               const tamanhoAtual = tamanhosSelecionados[produto.id];
+              const corAtual = coresSelecionadas[produto.id];
               const isLoaded = loadedImages[produto.id];
 
               return (
@@ -451,17 +406,14 @@ const CalcaAlfaiataria = () => {
                       src={produto.img}
                       alt={produto.nomeSite}
                       className={styles.productImg}
-                      onClick={() => setImagemExpandida(produto.img)} // NOVO: Ação de click
+                      onClick={() => setImagemExpandida(produto.img)}
                       loading={index < 4 ? "eager" : "lazy"}
                       onLoad={() => handleImageLoad(produto.id)}
                       onError={(e) => {
                         handleImageLoad(produto.id);
                         e.target.style.opacity = 1;
                       }}
-                      style={{
-                        opacity: isLoaded ? 1 : 0,
-                        transition: "opacity 0.4s ease",
-                      }}
+                      style={{ opacity: isLoaded ? 1 : 0, transition: "opacity 0.4s ease" }}
                     />
                   </div>
 
@@ -474,25 +426,34 @@ const CalcaAlfaiataria = () => {
                       <span className={styles.price}>R$ {formatarPreco(produto.preco)}</span>
                     </div>
 
+                    {/* SELETOR DE CORES */}
+                    <div className={styles.colorSelector}>
+                      {produto.cores.map((cor) => (
+                        <button
+                          key={cor.nome}
+                          title={cor.nome} // Mostra o nome da cor ao passar o mouse
+                          onClick={() => selecionarCor(produto.id, cor.nome)}
+                          style={{ backgroundColor: cor.hex }}
+                          className={`${styles.colorBtn} ${corAtual === cor.nome ? styles.activeColor : ""}`}
+                          aria-label={`Selecionar cor ${cor.nome}`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* SELETOR DE TAMANHOS */}
                     <div className={styles.sizeSelector}>
                       {produto.tamanhos.map((tamanho) => (
                         <button
                           key={tamanho}
                           onClick={() => selecionarTamanho(produto.id, tamanho)}
-                          className={`
-                            ${styles.sizeBtn}
-                            ${tamanhoAtual === tamanho ? styles.activeSize : ""}
-                          `}
+                          className={`${styles.sizeBtn} ${tamanhoAtual === tamanho ? styles.activeSize : ""}`}
                         >
                           {tamanho}
                         </button>
                       ))}
                     </div>
 
-                    <button
-                      className={styles.addBtn}
-                      onClick={() => adicionarAoCarrinho(produto)}
-                    >
+                    <button className={styles.addBtn} onClick={() => adicionarAoCarrinho(produto)}>
                       + ADICIONAR
                     </button>
                   </div>
