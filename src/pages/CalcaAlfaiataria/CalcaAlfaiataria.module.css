@@ -106,6 +106,12 @@
     height: 100%;
     object-fit: contain;
     padding: 1rem; /* Reduzido de 1.5rem */
+    cursor: pointer; /* NOVO: Mostra a mãozinha ao passar o mouse */
+    transition: transform 0.3s ease;
+}
+
+.productImg:hover {
+    transform: scale(1.05); /* Pequeno zoom ao passar o mouse antes de clicar */
 }
 
 /* =========================================================
@@ -176,9 +182,6 @@
     white-space: nowrap;
 }
 
-/* =========================================================
-   TAMANHOS
-========================================================= */
 
 .sizeSelector {
     display: flex;
@@ -670,6 +673,70 @@
 }
 
 /* =========================================================
+   MODAL DE IMAGEM EXPANDIDA (NOVO)
+========================================================= */
+
+.imageModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85); /* Fundo bem escuro pra focar na imagem */
+    backdrop-filter: blur(5px);
+    z-index: 100000; /* Acima de tudo na tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.imageModalContent {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.expandedImg {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.closeImageModalBtn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--roxo);
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.closeImageModalBtn:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* =========================================================
    RESPONSIVIDADE
 ========================================================= */
 
@@ -696,6 +763,10 @@
 
     .cartSidebar {
         max-width: 100%;
+    }
+    
+    .imageModalOverlay {
+        padding: 1rem;
     }
 }
 

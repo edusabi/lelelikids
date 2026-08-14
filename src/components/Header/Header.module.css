@@ -119,12 +119,47 @@
 }
 
 /* --- Responsividade --- */
+/* --- Responsividade --- */
 @media (max-width: 768px) {
   .nav {
-    display: none; /* Esconde os links no mobile para não poluir (poderia ser um menu hambúrguer) */
+    /* Esconde os links no mobile para não poluir */
+    display: none; 
   }
   
   .topBar {
-    justify-content: center; /* Centraliza a logo no mobile */
+    /* Centraliza a logo no mobile */
+    justify-content: center; 
+  }
+
+  .tickerContainer {
+    /* Permite deslizar com o dedo horizontalmente */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Suavidade no iOS */
+    
+    /* Esconde a barra de rolagem visualmente */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE e Edge */
+  }
+
+  .tickerContainer::-webkit-scrollbar {
+    /* Esconde a barra de rolagem no Chrome, Safari e Opera */
+    display: none;
+  }
+
+  .tickerTrack {
+    /* Para a animação do letreiro no celular */
+    animation: none;
+    
+    /* Reduz um pouco o espaço entre os itens para caber melhor na tela */
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  /* 
+   Como o React renderiza 33 itens (11 originais x 3), 
+   escondemos do 12º em diante no mobile para o usuário não rolar repetições à toa 
+  */
+  .tickerItem:nth-child(n+12) {
+    display: none;
   }
 }

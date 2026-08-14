@@ -5,6 +5,9 @@ import styles from "./CalcaAlfaiataria.module.css";
 
 const CalcaAlfaiataria = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
+  
+  // NOVO ESTADO: Controla qual imagem está expandida
+  const [imagemExpandida, setImagemExpandida] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -65,8 +68,9 @@ const CalcaAlfaiataria = () => {
     }, 3000);
   };
 
+  // ATUALIZADO: Impede o scroll da página também quando a imagem estiver expandida
   useEffect(() => {
-    if (isCartOpen || isLoadingPage) {
+    if (isCartOpen || isLoadingPage || imagemExpandida) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -75,82 +79,76 @@ const CalcaAlfaiataria = () => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isCartOpen, isLoadingPage]);
+  }, [isCartOpen, isLoadingPage, imagemExpandida]);
 
   useEffect(() => {
     localStorage.setItem("vyra_cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Adicionado o array 'tamanhos' dentro de cada produto
   const produtos = [
     {
-      id: "calca-alfaiataria-preta",
-      nomeSite: "Calça Alfaiataria Preta",
-      nomeWpp: "Calça Alfaiataria Preta",
+      id: "calca-alfaiataria-amarelo",
+      nomeSite: "Calça Alfaiataria Amarelo",
+      nomeWpp: "Calça Alfaiataria Amarelo",
       img: "/calcaAlfaiataria/IMG-20260811-WA0006.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
+      preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
     },
     {
-      id: "calca-alfaiataria-bege",
-      nomeSite: "Calça Alfaiataria Bege",
-      nomeWpp: "Calça Alfaiataria Bege",
+      id: "calca-alfaiataria-verde-musgo",
+      nomeSite: "Calça Alfaiataria Verde Musgo",
+      nomeWpp: "Calça Alfaiataria Verde Musgo",
       img: "/calcaAlfaiataria/IMG-20260811-WA0007.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
+      preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
     },
     {
-      id: "calca-alfaiataria-cinza",
-      nomeSite: "Calça Alfaiataria Cinza",
-      nomeWpp: "Calça Alfaiataria Cinza",
+      id: "calca-alfaiataria-chiclete",
+      nomeSite: "Calça Alfaiataria Chiclete",
+      nomeWpp: "Calça Alfaiataria Chiclete",
       img: "/calcaAlfaiataria/IMG-20260811-WA0008.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
+      preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
     },
     {
-      id: "calca-alfaiataria-marrom",
-      nomeSite: "Calça Alfaiataria Marrom",
-      nomeWpp: "Calça Alfaiataria Marrom",
+      id: "calca-alfaiataria-chiclete-2", // Alterei o ID para não repetir o anterior
+      nomeSite: "Calça Alfaiataria Chiclete",
+      nomeWpp: "Calça Alfaiataria Chiclete",
       img: "/calcaAlfaiataria/IMG-20260811-WA0048.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
-      tamanhos: ["02"], // Apenas tamanho 02
+      preco: 30.00,
+      tamanhos: ["02"],
     },
     {
-      id: "calca-alfaiataria-off-white",
-      nomeSite: "Calça Alfaiataria Off White",
-      nomeWpp: "Calça Alfaiataria Off White",
+      id: "calca-alfaiataria-amarelo-tamanho02",
+      nomeSite: "Calça Alfaiataria Amarelo",
+      nomeWpp: "Calça Alfaiataria Amarelo",
       img: "/calcaAlfaiataria/IMG-20260811-WA0049.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
-      tamanhos: ["02"], // Apenas tamanho 02
+      preco: 30.00,
+      tamanhos: ["02"],
     },
     {
-      id: "calca-alfaiataria-off",
-      nomeSite: "Calça Alfaiataria Off White",
-      nomeWpp: "Calça Alfaiataria Off White",
+      id: "calca-alfaiataria-Azul-Royal",
+      nomeSite: "Calça Alfaiataria Azul Royal",
+      nomeWpp: "Calça Alfaiataria Azul Royal",
       img: "/calcaAlfaiataria/IMG-20260811-WA0050.jpeg",
       tag: "ALFAIATARIA",
-      preco: 89.9,
-      tamanhos: ["02"], // Apenas tamanho 02
+      preco: 30.00,
+      tamanhos: ["02"],
     },
   ];
 
   const selecionarTamanho = (produtoId, tamanho) => {
     setTamanhosSelecionados((prev) => {
       if (prev[produtoId] === tamanho) {
-        const novoEstado = {
-          ...prev,
-        };
-
+        const novoEstado = { ...prev };
         delete novoEstado[produtoId];
-
         return novoEstado;
       }
-
       return {
         ...prev,
         [produtoId]: tamanho,
@@ -158,7 +156,6 @@ const CalcaAlfaiataria = () => {
     });
   };
 
-  // FUNÇÃO DE PREÇO SEGURA
   const obterPreco = (item) => {
     const possiveisPrecos = [
       item?.preco,
@@ -177,11 +174,7 @@ const CalcaAlfaiataria = () => {
 
   const formatarPreco = (valor) => {
     const numero = Number(valor);
-
-    if (!Number.isFinite(numero)) {
-      return "0,00";
-    }
-
+    if (!Number.isFinite(numero)) return "0,00";
     return numero.toFixed(2).replace(".", ",");
   };
 
@@ -189,29 +182,20 @@ const CalcaAlfaiataria = () => {
     const tamanhoEscolhido = tamanhosSelecionados[produto.id];
 
     if (!tamanhoEscolhido) {
-      mostrarToast(
-        "Por favor, selecione um tamanho antes de adicionar!",
-        "error",
-      );
-
+      mostrarToast("Por favor, selecione um tamanho antes de adicionar!", "error");
       return;
     }
 
     const cartItemId = `${produto.id}-${tamanhoEscolhido}`;
 
     setCart((prevCart) => {
-      const itemExiste = prevCart.find(
-        (item) => item.cartItemId === cartItemId,
-      );
+      const itemExiste = prevCart.find((item) => item.cartItemId === cartItemId);
 
       if (itemExiste) {
         return prevCart.map((item) =>
           item.cartItemId === cartItemId
-            ? {
-                ...item,
-                qtd: Number(item.qtd || 0) + 1,
-              }
-            : item,
+            ? { ...item, qtd: Number(item.qtd || 0) + 1 }
+            : item
         );
       }
 
@@ -234,36 +218,28 @@ const CalcaAlfaiataria = () => {
       prevCart.map((item) => {
         if (item.cartItemId === cartItemId) {
           const quantidadeAtual = Number(item.qtd) || 1;
-
           const novaQtd = quantidadeAtual + delta;
-
           return {
             ...item,
-
             qtd: novaQtd > 0 ? novaQtd : 1,
           };
         }
-
         return item;
-      }),
+      })
     );
   };
 
   const removerItem = (cartItemId) => {
     setCart((prevCart) =>
-      prevCart.filter((item) => item.cartItemId !== cartItemId),
+      prevCart.filter((item) => item.cartItemId !== cartItemId)
     );
   };
 
-  const totalItens = cart.reduce(
-    (acc, item) => acc + (Number(item.qtd) || 0),
-    0,
-  );
+  const totalItens = cart.reduce((acc, item) => acc + (Number(item.qtd) || 0), 0);
 
   const totalCarrinho = cart.reduce((acc, item) => {
     const preco = obterPreco(item);
     const quantidade = Number(item.qtd) || 0;
-
     return acc + preco * quantidade;
   }, 0);
 
@@ -272,11 +248,7 @@ const CalcaAlfaiataria = () => {
 
   const finalizarCompraWhatsapp = () => {
     if (!podeFinalizar) {
-      mostrarToast(
-        `O pedido mínimo é de 10 peças. Faltam ${pecasFaltando} peças.`,
-        "error",
-      );
-
+      mostrarToast(`O pedido mínimo é de 10 peças. Faltam ${pecasFaltando} peças.`, "error");
       return;
     }
 
@@ -316,6 +288,24 @@ const CalcaAlfaiataria = () => {
         </div>
       )}
 
+      {/* NOVO: Modal de Imagem Expandida */}
+      {imagemExpandida && (
+        <div 
+          className={styles.imageModalOverlay} 
+          onClick={() => setImagemExpandida(null)}
+        >
+          <div className={styles.imageModalContent} onClick={(e) => e.stopPropagation()}>
+            <button 
+              className={styles.closeImageModalBtn} 
+              onClick={() => setImagemExpandida(null)}
+            >
+              ✕
+            </button>
+            <img src={imagemExpandida} alt="Produto Ampliado" className={styles.expandedImg} />
+          </div>
+        </div>
+      )}
+
       <div className={styles.container}>
         <Header />
 
@@ -323,9 +313,7 @@ const CalcaAlfaiataria = () => {
           <div
             className={`
               ${styles.toast}
-              ${
-                toast.type === "error" ? styles.toastError : styles.toastSuccess
-              }
+              ${toast.type === "error" ? styles.toastError : styles.toastSuccess}
             `}
           >
             {toast.message}
@@ -358,14 +346,8 @@ const CalcaAlfaiataria = () => {
         </button>
 
         {isCartOpen && (
-          <div
-            className={styles.cartOverlay}
-            onClick={() => setIsCartOpen(false)}
-          >
-            <div
-              className={styles.cartSidebar}
-              onClick={(e) => e.stopPropagation()}
-            >
+          <div className={styles.cartOverlay} onClick={() => setIsCartOpen(false)}>
+            <div className={styles.cartSidebar} onClick={(e) => e.stopPropagation()}>
               <div className={styles.cartHeader}>
                 <h2>CARRINHO</h2>
                 <button
@@ -379,9 +361,7 @@ const CalcaAlfaiataria = () => {
 
               <div className={styles.cartItemsContainer}>
                 {cart.length === 0 ? (
-                  <p className={styles.emptyCartMsg}>
-                    Seu carrinho está vazio.
-                  </p>
+                  <p className={styles.emptyCartMsg}>Seu carrinho está vazio.</p>
                 ) : (
                   cart.map((item) => {
                     const preco = obterPreco(item);
@@ -396,11 +376,8 @@ const CalcaAlfaiataria = () => {
                             className={styles.cartItemImg}
                           />
                         </div>
-
                         <div className={styles.cartItemInfo}>
-                          <h4 title={item.nomeSite}>
-                            {item.nomeSite || "Produto"}
-                          </h4>
+                          <h4 title={item.nomeSite}>{item.nomeSite || "Produto"}</h4>
                           <span className={styles.cartItemSize}>
                             Tamanho: {item.tamanho || "N/A"}
                           </span>
@@ -409,21 +386,9 @@ const CalcaAlfaiataria = () => {
                           </p>
 
                           <div className={styles.qtyControls}>
-                            <button
-                              onClick={() =>
-                                alterarQuantidade(item.cartItemId, -1)
-                              }
-                            >
-                              -
-                            </button>
+                            <button onClick={() => alterarQuantidade(item.cartItemId, -1)}>-</button>
                             <span>{quantidade}</span>
-                            <button
-                              onClick={() =>
-                                alterarQuantidade(item.cartItemId, 1)
-                              }
-                            >
-                              +
-                            </button>
+                            <button onClick={() => alterarQuantidade(item.cartItemId, 1)}>+</button>
                             <button
                               className={styles.removeBtn}
                               onClick={() => removerItem(item.cartItemId)}
@@ -442,13 +407,10 @@ const CalcaAlfaiataria = () => {
                 <div className={styles.cartFooter}>
                   {!podeFinalizar ? (
                     <div className={styles.atacadoAviso}>
-                      Faltam <strong>{pecasFaltando} peças</strong> para atingir
-                      o mínimo de atacado (10).
+                      Faltam <strong>{pecasFaltando} peças</strong> para atingir o mínimo de atacado (10).
                     </div>
                   ) : (
-                    <div className={styles.atacadoSucesso}>
-                      ✓ Mínimo de atacado atingido!
-                    </div>
+                    <div className={styles.atacadoSucesso}>✓ Mínimo de atacado atingido!</div>
                   )}
 
                   <div className={styles.totalContainer}>
@@ -475,14 +437,6 @@ const CalcaAlfaiataria = () => {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>CALÇAS DE ALFAIATARIA</h2>
             <div className={styles.neonLine} />
-            <p
-              style={{
-                marginTop: "1rem",
-                color: "#888",
-              }}
-            >
-              Pedido mínimo: 10 peças.
-            </p>
           </div>
 
           <div className={styles.productGrid}>
@@ -498,6 +452,7 @@ const CalcaAlfaiataria = () => {
                       src={produto.img}
                       alt={produto.nomeSite}
                       className={styles.productImg}
+                      onClick={() => setImagemExpandida(produto.img)} // NOVO: Ação de click
                       loading={index < 4 ? "eager" : "lazy"}
                       onLoad={() => handleImageLoad(produto.id)}
                       onError={(e) => {
@@ -514,17 +469,12 @@ const CalcaAlfaiataria = () => {
                   <div className={styles.cardContent}>
                     <div className={styles.infoWrapper}>
                       <div className={styles.titleGroup}>
-                        <h3 className={styles.productName}>
-                          {produto.nomeSite}
-                        </h3>
+                        <h3 className={styles.productName}>{produto.nomeSite}</h3>
                         <span className={styles.tag}>{produto.tag}</span>
                       </div>
-                      <span className={styles.price}>
-                        R$ {formatarPreco(produto.preco)}
-                      </span>
+                      <span className={styles.price}>R$ {formatarPreco(produto.preco)}</span>
                     </div>
 
-                    {/* Mapeando os tamanhos específicos do produto em vez de um array global */}
                     <div className={styles.sizeSelector}>
                       {produto.tamanhos.map((tamanho) => (
                         <button
@@ -552,7 +502,6 @@ const CalcaAlfaiataria = () => {
             })}
           </div>
         </main>
-
         <Footer />
       </div>
     </>
