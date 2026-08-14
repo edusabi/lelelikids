@@ -6,7 +6,6 @@ import styles from "./CalcaAlfaiataria.module.css";
 const CalcaAlfaiataria = () => {
   const [isLoadingPage, setIsLoadingPage] = useState(true);
   
-  // NOVO ESTADO: Controla qual imagem está expandida
   const [imagemExpandida, setImagemExpandida] = useState(null);
 
   useEffect(() => {
@@ -435,7 +434,7 @@ const CalcaAlfaiataria = () => {
 
         <main className={styles.products}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>CALÇAS DE ALFAIATARIA</h2>
+            <h2 className={styles.sectionTitle}>CONJUNTO CALÇA DE ALFAIATARIA</h2>
             <div className={styles.neonLine} />
           </div>
 
