@@ -114,8 +114,8 @@ const CalcaAlfaiataria = () => {
       tamanhos: ["02", "04", "06", "08", "10"],
     },
     {
-      id: "calca-alfaiataria-chiclete-2", // Alterei o ID para não repetir o anterior
-      nomeSite: "Calça Alfaiataria Chiclete",
+      id: "calca-alfaiataria-chiclete-tamanho02", // Alterei o ID para não repetir o anterior
+      nomeSite: "Calça Alfaiataria Chiclete Tamanho 02",
       nomeWpp: "Calça Alfaiataria Chiclete",
       img: "/calcaAlfaiataria/IMG-20260811-WA0048.jpeg",
       tag: "ALFAIATARIA",
@@ -124,7 +124,7 @@ const CalcaAlfaiataria = () => {
     },
     {
       id: "calca-alfaiataria-amarelo-tamanho02",
-      nomeSite: "Calça Alfaiataria Amarelo",
+      nomeSite: "Calça Alfaiataria Amarelo Tamanho 02",
       nomeWpp: "Calça Alfaiataria Amarelo",
       img: "/calcaAlfaiataria/IMG-20260811-WA0049.jpeg",
       tag: "ALFAIATARIA",
@@ -132,8 +132,8 @@ const CalcaAlfaiataria = () => {
       tamanhos: ["02"],
     },
     {
-      id: "calca-alfaiataria-Azul-Royal",
-      nomeSite: "Calça Alfaiataria Azul Royal",
+      id: "calca-alfaiataria-Azul-Royal-tamanho02",
+      nomeSite: "Calça Alfaiataria Azul Royal Tamanho 02",
       nomeWpp: "Calça Alfaiataria Azul Royal",
       img: "/calcaAlfaiataria/IMG-20260811-WA0050.jpeg",
       tag: "ALFAIATARIA",
