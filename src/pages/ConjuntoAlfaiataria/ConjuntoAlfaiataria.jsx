@@ -29,7 +29,7 @@ const ConjuntoAlfaiataria = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tamanhosSelecionados, setTamanhosSelecionados] = useState({});
-  const [coresSelecionadas, setCoresSelecionadas] = useState({}); // NOVO ESTADO PARA CORES
+  const [coresSelecionadas, setCoresSelecionadas] = useState({}); // ESTADO PARA CORES
 
   const [toast, setToast] = useState({
     show: false,
@@ -68,56 +68,58 @@ const ConjuntoAlfaiataria = () => {
     localStorage.setItem("vyra_cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Lista de cores disponíveis
-  const opcoesCores = [
-    { nome: "Rosa Pink", hex: "#B42553" },
-    { nome: "Chiclete", hex: "#F38AA6" },
-    { nome: "Verde Musgo", hex: "#63865E" },
-    { nome: "Rosa Bebê", hex: "#F3B8B4" },
-    { nome: "Amarelo", hex: "#FFD700" },
-  ];
+  // DICIONÁRIO DE CORES
+  const mapaCores = {
+    "Rosa Pink": "#B42553",
+    "Chiclete": "#F38AA6",
+    "Verde Musgo": "#63865E",
+    "Rosa Bebê": "#F3B8B4",
+    "Amarelo": "#FFD700",
+    "Azul Royal": "#004691",
+    "Verde Bandeira": "#307740",
+  };
 
   // Produtos genéricos (cor é escolhida pelo cliente)
   const produtos = [
     {
       id: "conjunto-alfaiataria-1",
-      nomeSite: "Conjunto Alfaiataria",
-      nomeWpp: "Conjunto Alfaiataria",
+      nomeSite: "Conjunto Alfaiataria 01",
+      nomeWpp: "Conjunto Alfaiataria 01",
       img: "/conjuntoAlfaiataria/IMG-20260811-WA0018.jpeg",
       tag: "CONJUNTO",
       preco: 25.00,
       tamanhos: ["02", "04", "06", "08"],
-      cores: opcoesCores,
+      cores: ["Chiclete", "Azul Royal", "Verde Musgo", "Amarelo", "Verde Bandeira"],
     },
     {
       id: "conjunto-alfaiataria-2",
-      nomeSite: "Conjunto Alfaiataria",
-      nomeWpp: "Conjunto Alfaiataria",
+      nomeSite: "Conjunto Alfaiataria 02",
+      nomeWpp: "Conjunto Alfaiataria 02",
       img: "/conjuntoAlfaiataria/IMG-20260811-WA0019.jpeg",
       tag: "CONJUNTO",
       preco: 25.00,
       tamanhos: ["02", "04", "06", "08"],
-      cores: opcoesCores,
+      cores: ["Verde Musgo", "Rosa Pink", "Chiclete", "Rosa Bebê", "Amarelo"],
     },
     {
       id: "conjunto-alfaiataria-3",
-      nomeSite: "Conjunto Alfaiataria",
-      nomeWpp: "Conjunto Alfaiataria",
+      nomeSite: "Conjunto Alfaiataria 03",
+      nomeWpp: "Conjunto Alfaiataria 03",
       img: "/conjuntoAlfaiataria/IMG-20260811-WA0040.jpeg",
       tag: "CONJUNTO",
       preco: 25.00,
       tamanhos: ["02", "04", "06", "08"],
-      cores: opcoesCores,
+      cores: ["Verde Musgo", "Rosa Pink", "Chiclete", "Rosa Bebê", "Amarelo"],
     },
     {
       id: "conjunto-alfaiataria-4",
-      nomeSite: "Conjunto Alfaiataria",
-      nomeWpp: "Conjunto Alfaiataria",
+      nomeSite: "Conjunto Alfaiataria 04",
+      nomeWpp: "Conjunto Alfaiataria 04",
       img: "/conjuntoAlfaiataria/IMG-20260811-WA0041.jpeg",
       tag: "CONJUNTO",
       preco: 25.00,
       tamanhos: ["02", "04", "06", "08"],
-      cores: opcoesCores,
+      cores: ["Rosa Pink", "Chiclete", "Verde Musgo", "Rosa Bebê", "Amarelo"],
     },
   ];
 
@@ -321,7 +323,9 @@ const ConjuntoAlfaiataria = () => {
                         </div>
                         <div className={styles.cartItemInfo}>
                           <h4 title={item.nomeSite}>{item.nomeSite || "Produto"}</h4>
-                          <span className={styles.cartItemSize}>Tamanho: {item.tamanho || "N/A"} | Cor: {item.cor || "N/A"}</span>
+                          <span className={styles.cartItemSize}>
+                            Tamanho: {item.tamanho || "N/A"} | Cor: {item.cor || "N/A"}
+                          </span>
                           <p className={styles.cartItemPrice}>R$ {formatarPreco(preco)}</p>
 
                           <div className={styles.qtyControls}>
@@ -406,14 +410,14 @@ const ConjuntoAlfaiataria = () => {
 
                     {/* SELETOR DE CORES */}
                     <div className={styles.colorSelector}>
-                      {produto.cores.map((cor) => (
+                      {produto.cores.map((corNome) => (
                         <button
-                          key={cor.nome}
-                          title={cor.nome} // Mostra o nome da cor ao passar o mouse
-                          onClick={() => selecionarCor(produto.id, cor.nome)}
-                          style={{ backgroundColor: cor.hex }}
-                          className={`${styles.colorBtn} ${corAtual === cor.nome ? styles.activeColor : ""}`}
-                          aria-label={`Selecionar cor ${cor.nome}`}
+                          key={corNome}
+                          title={corNome}
+                          onClick={() => selecionarCor(produto.id, corNome)}
+                          style={{ backgroundColor: mapaCores[corNome] }}
+                          className={`${styles.colorBtn} ${corAtual === corNome ? styles.activeColor : ""}`}
+                          aria-label={`Selecionar cor ${corNome}`}
                         />
                       ))}
                     </div>

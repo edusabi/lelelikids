@@ -68,76 +68,78 @@ const CalcaAlfaiataria = () => {
     localStorage.setItem("vyra_cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Lista de cores disponíveis
-  const opcoesCores = [
-    { nome: "Chiclete", hex: "#F88EAC" },
-    { nome: "Verde Bandeira", hex: "#307740" },
-    { nome: "Verde Musgo", hex: "#64875D" },
-    { nome: "Azul Royal", hex: "#004691" },
-    { nome: "Amarelo", hex: "#FFD700" },
-  ];
+  // NOVO: Dicionário de cores para a página de Calça Alfaiataria
+  const mapaCores = {
+    "Chiclete": "#F88EAC",
+    "Verde Bandeira": "#307740",
+    "Verde Musgo": "#64875D",
+    "Azul Royal": "#004691",
+    "Amarelo": "#FFD700",
+  };
 
   // Produtos genéricos (cor é escolhida pelo cliente)
   const produtos = [
     {
       id: "calca-alfaiataria-1",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 01",
+      nomeWpp: "Conjunto Calça Alfaiataria 01",
       img: "/calcaAlfaiataria/IMG-20260811-WA0006.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
-      cores: opcoesCores,
+      // Exemplo: Esse tem todas as cores
+      cores: ["Amarelo", "Chiclete", "Verde Musgo"],
     },
     {
       id: "calca-alfaiataria-2",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 02",
+      nomeWpp: "Conjunto Calça Alfaiataria 02",
       img: "/calcaAlfaiataria/IMG-20260811-WA0007.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
-      cores: opcoesCores,
+      // Exemplo: Cores selecionadas manualmente
+      cores: ["Verde Musgo", "Chiclete", "Amarelo"],
     },
     {
       id: "calca-alfaiataria-3",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 03",
+      nomeWpp: "Conjunto Calça Alfaiataria 03",
       img: "/calcaAlfaiataria/IMG-20260811-WA0008.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02", "04", "06", "08", "10"],
-      cores: opcoesCores,
+      cores: ["Chiclete", "Verde Musgo", "Amarelo"],
     },
     {
       id: "calca-alfaiataria-4",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 04",
+      nomeWpp: "Conjunto Calça Alfaiataria 04",
       img: "/calcaAlfaiataria/IMG-20260811-WA0048.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
-      cores: opcoesCores,
+      cores: ["Chiclete", "Verde Musgo", "Amarelo", "Azul Royal", "Verde Bandeira"],
     },
     {
       id: "calca-alfaiataria-5",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 05",
+      nomeWpp: "Conjunto Calça Alfaiataria 05",
       img: "/calcaAlfaiataria/IMG-20260811-WA0049.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
-      cores: opcoesCores,
+      cores: ["Amarelo", "Verde Musgo", "Chiclete", "Azul Royal", "Verde Bandeira"],
     },
     {
       id: "calca-alfaiataria-6",
-      nomeSite: "Calça Alfaiataria",
-      nomeWpp: "Calça Alfaiataria",
+      nomeSite: "Conjunto Calça Alfaiataria 06",
+      nomeWpp: "Conjunto Calça Alfaiataria 06",
       img: "/calcaAlfaiataria/IMG-20260811-WA0050.jpeg",
       tag: "ALFAIATARIA",
       preco: 30.00,
       tamanhos: ["02"],
-      cores: opcoesCores,
+      cores: ["Azul Royal", "Verde Musgo", "Chiclete", "Amarelo", "Verde Bandeira"],
     },
   ];
 
@@ -426,16 +428,16 @@ const CalcaAlfaiataria = () => {
                       <span className={styles.price}>R$ {formatarPreco(produto.preco)}</span>
                     </div>
 
-                    {/* SELETOR DE CORES */}
+                    {/* SELETOR DE CORES ATUALIZADO */}
                     <div className={styles.colorSelector}>
-                      {produto.cores.map((cor) => (
+                      {produto.cores.map((corNome) => (
                         <button
-                          key={cor.nome}
-                          title={cor.nome} // Mostra o nome da cor ao passar o mouse
-                          onClick={() => selecionarCor(produto.id, cor.nome)}
-                          style={{ backgroundColor: cor.hex }}
-                          className={`${styles.colorBtn} ${corAtual === cor.nome ? styles.activeColor : ""}`}
-                          aria-label={`Selecionar cor ${cor.nome}`}
+                          key={corNome}
+                          title={corNome}
+                          onClick={() => selecionarCor(produto.id, corNome)}
+                          style={{ backgroundColor: mapaCores[corNome] }}
+                          className={`${styles.colorBtn} ${corAtual === corNome ? styles.activeColor : ""}`}
+                          aria-label={`Selecionar cor ${corNome}`}
                         />
                       ))}
                     </div>
