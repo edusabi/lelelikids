@@ -375,6 +375,12 @@
     scrollbar-width: none; 
   }
 
+  /* CORREÇÃO AQUI: Remove os gradientes laterais no mobile */
+  .tickerContainer::before,
+  .tickerContainer::after {
+    display: none;
+  }
+
   .tickerContainer::-webkit-scrollbar {
     display: none; 
   }
