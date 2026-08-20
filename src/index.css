@@ -4,3 +4,26 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;;
 }
+
+/* Define a largura ou altura da barra de rolagem inteira */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* O fundo da barra de rolagem (trilha) */
+::-webkit-scrollbar-track {
+  background: #fff; /* Cor escura para o fundo */
+  border-radius: 8px;
+}
+
+/* A parte móvel da barra (polegar) */
+::-webkit-scrollbar-thumb {
+  background: #f412f0; 
+  border-radius: 8px;
+  border: 3px solid #fff; /* Cria um efeito de preenchimento em volta do polegar */
+}
+
+/* Cor do polegar ao passar o cursor do mouse */
+::-webkit-scrollbar-thumb:hover {
+  background: #bd0fba;
+}
