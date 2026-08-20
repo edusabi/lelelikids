@@ -3,7 +3,6 @@
   --cor-principal-escura: #bd0fba;
   --cor-texto: #351333;
   --cor-clara: #fff4ff;
-
   position: fixed;
   top: 0;
   right: 0;
@@ -33,7 +32,6 @@
 }
 
 /* LOGO */
-
 .logoContainer {
   display: flex;
   align-items: center;
@@ -50,9 +48,7 @@
   background: var(--cor-clara);
   border: 2px solid rgba(244, 18, 240, 0.25);
   border-radius: 50%;
-  transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .logoContainer:hover .logo {
@@ -83,7 +79,6 @@
 }
 
 /* NAVEGAÇÃO */
-
 .nav {
   display: flex;
   align-items: center;
@@ -129,19 +124,13 @@
   min-height: 44px;
   padding: 0 20px;
   color: #ffffff;
-  background: linear-gradient(
-    135deg,
-    var(--cor-principal),
-    var(--cor-principal-escura)
-  );
+  background: linear-gradient(135deg, var(--cor-principal), var(--cor-principal-escura));
   border-radius: 12px;
   box-shadow: 0 9px 22px rgba(244, 18, 240, 0.23);
   font-size: 0.81rem;
   font-weight: 800;
   text-decoration: none;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .sellerButton::before {
@@ -156,7 +145,6 @@
 }
 
 /* MENU MOBILE */
-
 .menuButton {
   display: none;
   flex-direction: column;
@@ -178,9 +166,7 @@
   height: 2px;
   background: var(--cor-principal);
   border-radius: 5px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .menuButtonAberto span:nth-child(1) {
@@ -196,7 +182,6 @@
 }
 
 /* FAIXA DE CATEGORIAS */
-
 .tickerContainer {
   position: relative;
   z-index: 2;
@@ -220,27 +205,26 @@
 
 .tickerContainer::before {
   left: 0;
-  background: linear-gradient(
-    to right,
-    var(--cor-principal),
-    transparent
-  );
+  background: linear-gradient(to right, var(--cor-principal), transparent);
 }
 
 .tickerContainer::after {
   right: 0;
-  background: linear-gradient(
-    to left,
-    var(--cor-principal),
-    transparent
-  );
+  background: linear-gradient(to left, var(--cor-principal), transparent);
 }
 
 .tickerTrack {
   display: flex;
   width: max-content;
   height: 100%;
+  
+  /* Aceleração de hardware para rodar suave no iOS */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  
   animation: ticker 35s linear infinite;
+  -webkit-animation: ticker 35s linear infinite;
 }
 
 .tickerContainer:hover .tickerTrack {
@@ -265,9 +249,7 @@
   letter-spacing: 0.025em;
   text-decoration: none;
   white-space: nowrap;
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .tickerItem span {
@@ -280,64 +262,65 @@
   transform: translateY(-1px);
 }
 
+/* KEYFRAMES COM SUPORTE SAFARI/IOS */
+@-webkit-keyframes ticker {
+  from {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes ticker {
   from {
     transform: translateX(0);
   }
-
   to {
     transform: translateX(-50%);
   }
 }
 
 /* TABLET */
-
 @media (max-width: 900px) {
   .headerContent {
     padding: 0 25px;
   }
-
   .nav {
     gap: 20px;
   }
-
   .nav > a:not(.sellerButton) {
     font-size: 0.78rem;
   }
-
   .sellerButton {
     padding: 0 15px;
   }
 }
 
 /* CELULAR */
-
 @media (max-width: 720px) {
   .topBar {
     height: 72px;
   }
-
   .headerContent {
     padding: 0 20px;
   }
-
   .logo {
     width: 47px;
     height: 47px;
   }
-
   .brand strong {
     font-size: 1rem;
   }
-
   .brand span {
     font-size: 0.6rem;
   }
-
   .menuButton {
     display: flex;
   }
-
+  
   .nav {
     position: absolute;
     top: 72px;
@@ -355,55 +338,63 @@
     opacity: 0;
     pointer-events: none;
     transform: translateY(-12px);
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
-
+  
   .navAberta {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
   }
-
+  
   .nav > a:not(.sellerButton) {
     width: 100%;
     padding: 13px 12px;
     border-radius: 9px;
     font-size: 0.84rem;
   }
-
+  
   .nav > a:not(.sellerButton)::after {
     display: none;
   }
-
+  
   .nav > a:not(.sellerButton):hover {
     background: var(--cor-clara);
   }
-
+  
   .sellerButton {
     width: 100%;
     margin-top: 7px;
   }
 
+  /* ROLAGEM COM O DEDO NO MOBILE */
   .tickerContainer {
     height: 39px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+  }
+
+  .tickerContainer::-webkit-scrollbar {
+    display: none; 
   }
 
   .tickerTrack {
-    animation-duration: 28s;
+    animation: none; 
+    -webkit-animation: none;
   }
 
   .tickerGroup {
     padding-right: 28px;
     gap: 28px;
   }
-
+  
   .tickerItem {
     font-size: 0.7rem;
   }
 }
 
+/* ACESSIBILIDADE */
 @media (prefers-reduced-motion: reduce) {
   .tickerTrack {
     animation-play-state: paused;

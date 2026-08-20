@@ -186,19 +186,16 @@ const Home = () => {
                 Entrar no grupo
               </a>
 
-              <a
-                href={vendedorUrl}
-                target="_blank"
-                rel="noreferrer"
+              <NavLink
+                to="/cardsConjunto"
                 className={styles.outlineButton}
               >
                 Fazer meu pedido
-              </a>
+              </NavLink>
             </div>
           </div>
         </section>
 
-        {/* INSTAGRAM */}
         <section className={styles.instagram}>
           <div className={styles.instagramContent}>
             <span className={styles.instagramIcon}>♡</span>
