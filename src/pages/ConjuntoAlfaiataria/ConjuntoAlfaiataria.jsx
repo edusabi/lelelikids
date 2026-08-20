@@ -75,7 +75,6 @@ const ConjuntoAlfaiataria = () => {
     "Verde Musgo": "#63865E",
     "Rosa Bebê": "#F3B8B4",
     "Amarelo": "#FFD700",
-    "Azul Royal": "#004691",
     "Verde Bandeira": "#307740",
   };
 
@@ -89,7 +88,7 @@ const ConjuntoAlfaiataria = () => {
       tag: "CONJUNTO",
       preco: 25.00,
       tamanhos: ["02", "04", "06", "08"],
-      cores: ["Chiclete", "Azul Royal", "Verde Musgo", "Amarelo", "Verde Bandeira"],
+      cores: ["Chiclete", "Rosa Pink", "Verde Musgo", "Amarelo", "Verde Bandeira"],
     },
     {
       id: "conjunto-alfaiataria-2",
@@ -236,7 +235,7 @@ const ConjuntoAlfaiataria = () => {
       return;
     }
 
-    const numeroWpp = "5581995782112";
+    const numeroWpp = "5581996530929";
     let mensagem = "Olá! Gostaria de finalizar o meu pedido de *ATACADO*:\n\n";
 
     mensagem += "*MEU CARRINHO:*\n";

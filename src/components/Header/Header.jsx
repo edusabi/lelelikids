@@ -1,52 +1,142 @@
-import React from 'react';
-import styles from './Header.module.css';
+import React, { useState } from "react";
+import styles from "./Header.module.css";
 
 const Header = () => {
-  // Agora a lista contém o nome e o link da página correspondente
+  const [menuAberto, setMenuAberto] = useState(false);
+
   const categorias = [
-    { nome: "Conjunto de Alfaiataria", url: "/categoria/conjuntoAlfaiataria" },
-    { nome: "Conjunto Jeans", url: "/categoria/conjuntoJeans" },
-    { nome: "Conjunto Calça de Alfaiataria", url: "/categoria/calcaAlfaiataria" },
-    { nome: "Calça Jeans", url: "/categoria/calcaJeans" },
-    { nome: "Conjunto Juvenil", url: "/categoria/conjuntoJuvenil" },
-    { nome: "Vestido Cotton", url: "/categoria/vestidoCotton" },
-    { nome: "Conjunto FIO 30", url: "/categoria/conjuntofio30" },
-    { nome: "Conjunto Infantil Básico", url: "/categoria/conjuntoBasico" },
-    { nome: "Blusa Juvenil", url: "/categoria/blusaJuvenil" },
-    { nome: "Bermudas Masculino", url: "/categoria/bermudasMasculino" },
-    { nome: "Conjunto Tecido", url: "/categoria/conjuntoTecido" },
+    {
+      nome: "Conjunto de Alfaiataria",
+      url: "/categoria/conjuntoAlfaiataria",
+    },
+    {
+      nome: "Conjunto Jeans",
+      url: "/categoria/conjuntoJeans",
+    },
+    {
+      nome: "Calça de Alfaiataria",
+      url: "/categoria/calcaAlfaiataria",
+    },
+    {
+      nome: "Conjunto Juvenil",
+      url: "/categoria/conjuntoJuvenil",
+    },
+    {
+      nome: "Vestido Cotton",
+      url: "/categoria/vestidoCotton",
+    },
+    {
+      nome: "Conjunto FIO 30",
+      url: "/categoria/conjuntofio30",
+    },
+    {
+      nome: "Conjunto Infantil Básico",
+      url: "/categoria/conjuntoBasico",
+    },
+    {
+      nome: "Conjunto Tecido",
+      url: "/categoria/conjuntoTecido",
+    },
   ];
+
+  const vendedorUrl =
+    "https://wa.me/5581996530929?text=Olá!%20Conheci%20a%20Leleli%20Kids%20pelo%20site%20e%20quero%20conhecer%20o%20catálogo.";
+
+  const fecharMenu = () => {
+    setMenuAberto(false);
+  };
 
   return (
     <header className={styles.header}>
-      {/* Barra superior clássica */}
       <div className={styles.topBar}>
-        <div className={styles.logoContainer}>
-          <img src="/logo.jpg" alt="Leleli Kids Logo" className={styles.logo} />
-          <span className={styles.brandName}>Leleli Kids</span>
-        </div>
-        <nav className={styles.nav}>
-          <a href="/">Início</a>
-          <a href="/sobre">Sobre</a>
-          <a href="https://wa.me/5581996530929" target="_blank" rel="noreferrer" className={styles.navContact}>
-            Falar com Vendedor
+        <div className={styles.headerContent}>
+          {/* LOGO */}
+          <a
+            href="/"
+            className={styles.logoContainer}
+            onClick={fecharMenu}
+            aria-label="Ir para o início"
+          >
+            <img
+              src="/logo.jpg"
+              alt="Logo Leleli Kids"
+              className={styles.logo}
+            />
+
+            <div className={styles.brand}>
+              <strong>Leleli Kids</strong>
+              <span>Moda infantil</span>
+            </div>
           </a>
-        </nav>
+
+          {/* NAVEGAÇÃO DESKTOP */}
+          <nav
+            className={`${styles.nav} ${
+              menuAberto ? styles.navAberta : ""
+            }`}
+          >
+            <a href="/" onClick={fecharMenu}>
+              Início
+            </a>
+
+            <a href="/#vantagens" onClick={fecharMenu}>
+              Vantagens
+            </a>
+
+            <a
+              href="https://www.instagram.com/leleli.kids"
+              target="_blank"
+              rel="noreferrer"
+              onClick={fecharMenu}
+            >
+              Instagram
+            </a>
+
+            <a
+              href={vendedorUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.sellerButton}
+              onClick={fecharMenu}
+            >
+              Falar com a vendedora
+            </a>
+          </nav>
+
+          {/* BOTÃO MOBILE */}
+          <button
+            type="button"
+            className={`${styles.menuButton} ${
+              menuAberto ? styles.menuButtonAberto : ""
+            }`}
+            onClick={() => setMenuAberto((estadoAtual) => !estadoAtual)}
+            aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuAberto}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
 
-      {/* Letreiro digital animado e CLICÁVEL */}
+      {/* CATEGORIAS ANIMADAS */}
       <div className={styles.tickerContainer}>
         <div className={styles.tickerTrack}>
-          {/* Triplicamos o array para criar um efeito visual de loop infinito suave */}
-          {[...categorias, ...categorias, ...categorias].map((categoria, index) => (
-            <a 
-              key={index} 
-              href={categoria.url} 
-              className={styles.tickerItem}
-              title={`Ver ${categoria.nome}`}
-            >
-              💗 {categoria.nome}
-            </a>
+          {[0, 1].map((grupo) => (
+            <div className={styles.tickerGroup} key={grupo}>
+              {categorias.map((categoria) => (
+                <a
+                  key={`${grupo}-${categoria.url}`}
+                  href={categoria.url}
+                  className={styles.tickerItem}
+                  title={`Ver ${categoria.nome}`}
+                >
+                  <span>♡</span>
+                  {categoria.nome}
+                </a>
+              ))}
+            </div>
           ))}
         </div>
       </div>

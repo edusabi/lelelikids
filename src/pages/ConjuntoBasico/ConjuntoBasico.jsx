@@ -68,16 +68,27 @@ const ConjuntoBasico = () => {
     localStorage.setItem("vyra_cart", JSON.stringify(cart));
   }, [cart]);
 
-  // DICIONÁRIO DE CORES
+  // DICIONÁRIO DE TODAS AS CORES SOLICITADAS
   const mapaCores = {
-    "Rosa Pink": "#FF1493",
-    "Chiclete": "#FF69B4",
-    "Verde Musgo": "#4A5D23",
-    "Rosa Bebê": "#FFD1DC",
-    "Amarelo": "#FFD700",
+    "Laranja": "#F88051",
+    "Rosa Bebê": "#E3BDB5",
+    "Verde Limão": "#CBE488",
+    "Amarelo": "#F2E250",
+    "Lilás": "#C2B4C5",
+    "Verde Água": "#98A792",
+    "Rose": "#A95B5B",
+    "Vermelho": "#77010D",
+    "Preto": "#000",
+    "Pink": "#A41F51",
+    "Chiclete": "#D75F7F",
+    "Bege": "#ECE5C9",
+    "Vinho": "#71262A",
+    "Creme": "#F0E9A3",
+    "Azul": "#B4CAD5"
   };
 
-  // Produtos do Conjunto Básico
+  // Produtos: Preço ajustado para 22.00 e todas as cores inseridas em cada um.
+  // Você pode apagar as cores que não quer diretamente nos arrays "cores: [...]" de cada item.
   const produtos = [
     {
       id: "conjunto-basico-1",
@@ -85,9 +96,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 01",
       img: "/conjuntoBasico/IMG-20260811-WA0002.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02", "04", "06", "08", "10"],
-      cores: ["Rosa Pink", "Chiclete", "Verde Musgo", "Rosa Bebê", "Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Verde Limão", "Amarelo", "Lilás", "Verde Água"], 
     },
     {
       id: "conjunto-basico-2",
@@ -95,9 +106,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 02",
       img: "/conjuntoBasico/IMG-20260811-WA0003.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02", "04", "06", "08", "10"],
-      cores: ["Verde Musgo", "Amarelo", "Rosa Bebê"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Verde Limão", "Amarelo", "Lilás", "Verde Água"], 
     },
     {
       id: "conjunto-basico-3",
@@ -105,9 +116,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 03",
       img: "/conjuntoBasico/IMG-20260811-WA0004.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
+      preco: 22.00,
       tamanhos: ["02", "04", "06", "08", "10"],
-      cores: ["Rosa Pink", "Chiclete"], 
+      cores: ["Laranja", "Rosa Bebê", "Verde Limão", "Amarelo", "Lilás", "Verde Água"], 
     },
     {
       id: "conjunto-basico-4",
@@ -115,9 +126,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 04",
       img: "/conjuntoBasico/IMG-20260811-WA0005.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Verde Limão", "Amarelo", "Lilás", "Verde Água"], 
     },
     {
       id: "conjunto-basico-5",
@@ -125,9 +136,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 05",
       img: "/conjuntoBasico/IMG-20260811-WA0020.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Rose", "Vermelho", "Preto", "Pink", "Chiclete", "Amarelo"], 
     },
     {
       id: "conjunto-basico-6",
@@ -135,9 +146,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 06",
       img: "/conjuntoBasico/IMG-20260811-WA0021.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Rose", "Vermelho", "Preto", "Pink", "Chiclete", "Amarelo"], 
     },
     {
       id: "conjunto-basico-7",
@@ -145,9 +156,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 07",
       img: "/conjuntoBasico/IMG-20260811-WA0022.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Rose", "Vermelho", "Preto", "Pink", "Chiclete", "Amarelo"], 
     },
     {
       id: "conjunto-basico-8",
@@ -155,9 +166,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 08",
       img: "/conjuntoBasico/IMG-20260811-WA0023.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Rose", "Vermelho", "Preto", "Pink", "Chiclete", "Amarelo"], 
     },
     {
       id: "conjunto-basico-9",
@@ -165,9 +176,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 9",
       img: "/conjuntoBasico/IMG-20260811-WA0024.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde água","Bege", "Vinho", "Creme", "Preto", "Verde limão", "Azul", "Amarelo", "Rosa bebê", "Laranja"], 
     },
     {
       id: "conjunto-basico-10",
@@ -175,9 +186,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 10",
       img: "/conjuntoBasico/IMG-20260811-WA0025.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde água","Bege", "Vinho", "Creme", "Preto", "Verde limão", "Azul", "Amarelo", "Rosa bebê", "Laranja"], 
     },
     {
       id: "conjunto-basico-11",
@@ -185,9 +196,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 11",
       img: "/conjuntoBasico/IMG-20260811-WA0026.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde água","Bege", "Vinho", "Creme", "Preto", "Verde limão", "Azul", "Amarelo", "Rosa bebê", "Laranja"], 
     },
     {
       id: "conjunto-basico-12",
@@ -195,9 +206,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 12",
       img: "/conjuntoBasico/IMG-20260811-WA0027.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde Água", "Verde Limão", "Rosa Bebê", "Lilás", "Laranja"], 
     },
     {
       id: "conjunto-basico-13",
@@ -205,9 +216,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 13",
       img: "/conjuntoBasico/IMG-20260811-WA0028.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde Água", "Verde Limão", "Rosa Bebê", "Lilás", "Laranja"], 
     },
     {
       id: "conjunto-basico-14",
@@ -215,9 +226,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 14",
       img: "/conjuntoBasico/IMG-20260811-WA0029.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["02", "04", "06", "08"],
+      cores: ["Verde Água", "Verde Limão", "Rosa Bebê", "Lilás", "Laranja"], 
     },
     {
       id: "conjunto-basico-15",
@@ -225,9 +236,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 15",
       img: "/conjuntoBasico/IMG-20260811-WA0030.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Amarelo", "Verde Água", "Azul"], 
     },
     {
       id: "conjunto-basico-16",
@@ -235,9 +246,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 16",
       img: "/conjuntoBasico/IMG-20260811-WA0031.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Amarelo", "Verde Água", "Azul"], 
     },
     {
       id: "conjunto-basico-17",
@@ -245,9 +256,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 17",
       img: "/conjuntoBasico/IMG-20260811-WA0032.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Amarelo", "Verde Água", "Azul"], 
     },
     {
       id: "conjunto-basico-18",
@@ -255,9 +266,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 18",
       img: "/conjuntoBasico/IMG-20260811-WA0033.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Laranja", "Rosa Bebê", "Amarelo", "Verde Água", "Azul"], 
     },
     {
       id: "conjunto-basico-19",
@@ -265,9 +276,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 19",
       img: "/conjuntoBasico/IMG-20260811-WA0034.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Preto"], 
     },
     {
       id: "conjunto-basico-20",
@@ -275,19 +286,19 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 20",
       img: "/conjuntoBasico/IMG-20260811-WA0035.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
-    },
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Preto"], 
+      },
     {
       id: "conjunto-basico-21",
       nomeSite: "Conjunto Infantil Básico 21",
       nomeWpp: "Conjunto Infantil Básico 21",
       img: "/conjuntoBasico/IMG-20260811-WA0036.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Preto"], 
     },
     {
       id: "conjunto-basico-22",
@@ -295,9 +306,9 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 22",
       img: "/conjuntoBasico/IMG-20260811-WA0037.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Vermelho", "Lilás", "Amarelo", "Preto", "Chiclete", "Rose"], 
     },
     {
       id: "conjunto-basico-23",
@@ -305,19 +316,19 @@ const ConjuntoBasico = () => {
       nomeWpp: "Conjunto Infantil Básico 23",
       img: "/conjuntoBasico/IMG-20260811-WA0038.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
-    },
+      preco: 22.00,
+     tamanhos: ["04", "06", "08"],
+      cores: ["Vermelho", "Lilás", "Amarelo", "Preto", "Chiclete", "Rose"],
+     },
     {
       id: "conjunto-basico-24",
       nomeSite: "Conjunto Infantil Básico 24",
       nomeWpp: "Conjunto Infantil Básico 24",
       img: "/conjuntoBasico/IMG-20260811-WA0039.jpeg", 
       tag: "BÁSICO",
-      preco: 25.00,
-      tamanhos: ["02"],
-      cores: ["Amarelo"], 
+      preco: 22.00,
+      tamanhos: ["04", "06", "08"],
+      cores: ["Vermelho", "Lilás", "Amarelo", "Preto", "Chiclete", "Rose"],
     },
   ];
 
@@ -433,7 +444,7 @@ const ConjuntoBasico = () => {
       return;
     }
 
-    const numeroWpp = "5581995782112";
+    const numeroWpp = "5581996530929";
     let mensagem = "Olá! Gostaria de finalizar o meu pedido de *ATACADO*:\n\n";
 
     mensagem += "*MEU CARRINHO:*\n";

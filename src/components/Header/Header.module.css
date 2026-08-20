@@ -1,165 +1,411 @@
-/* Header.module.css */
-
 .header {
-  background-color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  position: sticky;
+  --cor-principal: #f412f0;
+  --cor-principal-escura: #bd0fba;
+  --cor-texto: #351333;
+  --cor-clara: #fff4ff;
+
+  position: fixed;
   top: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 5px 25px rgba(73, 13, 72, 0.12);
 }
 
-/* --- Barra Superior --- */
 .topBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
+  position: relative;
+  z-index: 3;
+  height: 78px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
 }
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1280px, 100%);
+  height: 100%;
+  padding: 0 6vw;
+  margin: 0 auto;
+}
+
+/* LOGO */
 
 .logoContainer {
   display: flex;
   align-items: center;
+  color: inherit;
+  text-decoration: none;
   gap: 12px;
 }
 
 .logo {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  display: block;
+  width: 52px;
+  height: 52px;
   object-fit: cover;
-  border: 2px solid #F412F0;
+  background: var(--cor-clara);
+  border: 2px solid rgba(244, 18, 240, 0.25);
+  border-radius: 50%;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.brandName {
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #F412F0;
-  letter-spacing: -0.5px;
+.logoContainer:hover .logo {
+  transform: rotate(-4deg) scale(1.05);
+  border-color: var(--cor-principal);
 }
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand strong {
+  color: var(--cor-principal);
+  font-size: 1.12rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.brand span {
+  margin-top: 3px;
+  color: #8d698b;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* NAVEGAÇÃO */
 
 .nav {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
+  gap: 32px;
 }
 
-.nav a {
+.nav > a:not(.sellerButton) {
+  position: relative;
+  padding: 10px 0;
+  color: var(--cor-texto);
+  font-size: 0.85rem;
+  font-weight: 750;
   text-decoration: none;
-  color: #555;
-  font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
-.nav a:hover {
-  color: #000000;
+.nav > a:not(.sellerButton)::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  background: var(--cor-principal);
+  border-radius: 10px;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
 }
 
-.navContact {
-  background-color: #F412F0;
-  color: #ffffff !important;
-  padding: 0.6rem 1.2rem;
-  border-radius: 25px;
-  box-shadow: 0 4px 10px rgba(230, 0, 126, 0.2);
+.nav > a:not(.sellerButton):hover {
+  color: var(--cor-principal);
 }
 
-.navContact:hover {
-  background-color: #c805c4;
+.nav > a:not(.sellerButton):hover::after {
+  transform: scaleX(1);
+}
+
+.sellerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--cor-principal),
+    var(--cor-principal-escura)
+  );
+  border-radius: 12px;
+  box-shadow: 0 9px 22px rgba(244, 18, 240, 0.23);
+  font-size: 0.81rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.sellerButton::before {
+  margin-right: 7px;
+  content: "♡";
+  font-size: 1.15rem;
+}
+
+.sellerButton:hover {
   transform: translateY(-2px);
+  box-shadow: 0 13px 28px rgba(244, 18, 240, 0.32);
 }
 
-/* --- Ticker / Letreiro Animado --- */
+/* MENU MOBILE */
+
+.menuButton {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: var(--cor-clara);
+  border: 1px solid rgba(244, 18, 240, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menuButton span {
+  display: block;
+  width: 21px;
+  height: 2px;
+  background: var(--cor-principal);
+  border-radius: 5px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.menuButtonAberto span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menuButtonAberto span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButtonAberto span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* FAIXA DE CATEGORIAS */
+
 .tickerContainer {
-  background-color: #ffe6f3; /* Fundo rosa bem clarinho */
-  border-top: 1px solid #ffcce6;
-  border-bottom: 1px solid #ffcce6;
+  position: relative;
+  z-index: 2;
   width: 100%;
+  height: 42px;
   overflow: hidden;
-  padding: 0.5rem 0;
-  display: flex;
-  white-space: nowrap;
+  background: var(--cor-principal);
+  box-shadow: inset 0 -1px rgba(255, 255, 255, 0.18);
+}
+
+.tickerContainer::before,
+.tickerContainer::after {
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  width: 70px;
+  height: 100%;
+  pointer-events: none;
+  content: "";
+}
+
+.tickerContainer::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--cor-principal),
+    transparent
+  );
+}
+
+.tickerContainer::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--cor-principal),
+    transparent
+  );
 }
 
 .tickerTrack {
-    display: inline-flex;
-    gap: 3rem;
-    /* A animação rola o conteúdo para a esquerda infinitamente */
-    animation: scroll 30s linear infinite; 
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: ticker 35s linear infinite;
 }
 
-/* Pausa a animação quando o usuário passa o mouse por cima */
-.tickerTrack:hover {
-    animation-play-state: paused;
+.tickerContainer:hover .tickerTrack {
+  animation-play-state: paused;
+}
+
+.tickerGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: 38px;
+  gap: 38px;
 }
 
 .tickerItem {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #F412F0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #ffffff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-.tickerTrack a{
-    text-decoration: none;
+.tickerItem span {
+  margin-right: 7px;
+  font-size: 1rem;
 }
 
-/* Animação do Letreiro */
-@keyframes scroll {
-    0% {
+.tickerItem:hover {
+  opacity: 0.78;
+  transform: translateY(-1px);
+}
+
+@keyframes ticker {
+  from {
     transform: translateX(0);
   }
-  100% {
+
+  to {
     transform: translateX(-50%);
   }
 }
 
-/* --- Responsividade --- */
-/* --- Responsividade --- */
-@media (max-width: 768px) {
-  .nav {
-    /* Esconde os links no mobile para não poluir */
-    display: none; 
+/* TABLET */
+
+@media (max-width: 900px) {
+  .headerContent {
+    padding: 0 25px;
   }
-  
+
+  .nav {
+    gap: 20px;
+  }
+
+  .nav > a:not(.sellerButton) {
+    font-size: 0.78rem;
+  }
+
+  .sellerButton {
+    padding: 0 15px;
+  }
+}
+
+/* CELULAR */
+
+@media (max-width: 720px) {
   .topBar {
-    /* Centraliza a logo no mobile */
-    justify-content: center; 
+    height: 72px;
+  }
+
+  .headerContent {
+    padding: 0 20px;
+  }
+
+  .logo {
+    width: 47px;
+    height: 47px;
+  }
+
+  .brand strong {
+    font-size: 1rem;
+  }
+
+  .brand span {
+    font-size: 0.6rem;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 72px;
+    right: 16px;
+    left: 16px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid rgba(244, 18, 240, 0.16);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 20px 35px rgba(61, 12, 59, 0.16);
+    gap: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .navAberta {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .nav > a:not(.sellerButton) {
+    width: 100%;
+    padding: 13px 12px;
+    border-radius: 9px;
+    font-size: 0.84rem;
+  }
+
+  .nav > a:not(.sellerButton)::after {
+    display: none;
+  }
+
+  .nav > a:not(.sellerButton):hover {
+    background: var(--cor-clara);
+  }
+
+  .sellerButton {
+    width: 100%;
+    margin-top: 7px;
   }
 
   .tickerContainer {
-    /* Permite deslizar com o dedo horizontalmente */
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Suavidade no iOS */
-    
-    /* Esconde a barra de rolagem visualmente */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE e Edge */
-  }
-
-  .tickerContainer::-webkit-scrollbar {
-    /* Esconde a barra de rolagem no Chrome, Safari e Opera */
-    display: none;
+    height: 39px;
   }
 
   .tickerTrack {
-    /* Para a animação do letreiro no celular */
-    animation: none;
-    
-    /* Reduz um pouco o espaço entre os itens para caber melhor na tela */
-    gap: 1.5rem;
-    padding: 0 1rem;
+    animation-duration: 28s;
   }
 
-  /* 
-   Como o React renderiza 33 itens (11 originais x 3), 
-   escondemos do 12º em diante no mobile para o usuário não rolar repetições à toa 
-  */
-  .tickerItem:nth-child(n+12) {
-    display: none;
+  .tickerGroup {
+    padding-right: 28px;
+    gap: 28px;
+  }
+
+  .tickerItem {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerTrack {
+    animation-play-state: paused;
   }
 }

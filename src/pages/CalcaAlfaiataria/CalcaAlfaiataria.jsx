@@ -256,7 +256,7 @@ const CalcaAlfaiataria = () => {
       return;
     }
 
-    const numeroWpp = "5581995782112";
+    const numeroWpp = "5581996530929";
     let mensagem = "Olá! Gostaria de finalizar o meu pedido de *ATACADO*:\n\n";
 
     mensagem += "*MEU CARRINHO:*\n";
